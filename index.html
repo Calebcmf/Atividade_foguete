@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foguete</title>
+    <style>
+        body
+        {
+            width: 100%;
+            height: 140vh;
+            overflow: hidden;
+            background-image: linear-gradient(180deg, rgb(0, 0, 48), rgb(6, 50, 146));
+        }
+        .foguete
+        {
+            position: absolute;
+            top: 690px;
+            left: 750px;
+        }
+        .chao
+        {
+            position: absolute;
+            top: 690px;
+            left: 640px;
+        }
+    </style>
+</head>
+<body>
+    <img src="chao.png" id="chao" width="300px"  class="chao">
+    <img src="foguete.gif" id="foguete" width="80px" class="foguete">
+</body>
+<script src="jquery-3.7.0.min.js"></script>
+<script>
+
+    data = new Date()
+    tempo_inicial = data.getTime()
+
+
+    document.onkeydown = Pega_Tecla;
+    function Pega_Tecla(e) 
+    {
+        e = e || window.event;
+
+        tecla = e.keyCode;
+        console.log(tecla); // MOSTRA O CÓDIGO DA TECLA PRESSIONADA
+        
+        data = new Date()
+        tempo_final = data.getTime()
+
+        if(tempo_final - tempo_inicial > 1000)
+        {
+            tempo_inicial = tempo_final
+            if(tecla == 37)
+            {
+                x = x - 20
+            }
+            if(tecla == 39)
+            {
+                x = x + 20
+            }
+            if(tecla == 40)
+            {
+                y = y + 20
+            }
+            if(tecla == 38)
+            {
+                y = y - 20
+            }
+        }
+    }
+    teleporizador= setTimeout(Subir, 1000)
+    x = 750;
+    y = 180;
+    TOPO = "";
+    esquerda = "";
+
+    function Subir()
+    {
+        TOPO = y + "px";
+        $("#foguete").animate({top:TOPO}, 1000)
+        temporizador = null
+        temporizador = setInterval(Descer, 1000)
+    }
+    function Descer()
+    {
+        y = y + 50
+        TOPO = y + "px"
+        esquerda = x + "px"
+        $("#foguete").animate({left:esquerda,top:TOPO},1000)
+        if(y > 610)
+        {
+            y = 600;
+        }
+    }
+</script>
+</html>
