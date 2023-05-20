@@ -28,22 +28,46 @@
     </style>
 </head>
 <body>
-    <audio id="musica"> 
-        <source src="contagem_regressiva.mp3" type="music/mp3">
-    </audio>
-    <audio src="lancamento_foguete.mp3"></audio>
     <img src="chao.png" id="chao" width="300px"  class="chao">
     <img src="foguete.gif" id="foguete" width="80px" class="foguete">
 </body>
 <script src="jquery-3.7.0.min.js"></script>
 <script>
 
-    function PlayMusic()
+    var audio = new Audio('contagem_regressiva.mp3');
+    var audio2 = new Audio('lancamento_foguete.mp3');
+    var audio3 = new Audio('we-have-a-problem.mp3');
+
+    function playAudio() 
     {
-        var music = document.getElementById('musica');
-        music.play();
+        audio.play();
     }
-    setTimeout(PlayMusic, 500)
+    setTimeout(playAudio, 500)
+
+    function playAudio2() 
+    {
+        audio2.play();
+    }
+    setTimeout(playAudio2, 15000)
+
+    function pausarAudio()
+    {
+        audio.pause()
+    }
+    setTimeout(pausarAudio, 15000)
+
+    function pausarAudio2()
+    {
+        audio2.pause()
+    }
+    setTimeout(pausarAudio2, 20000)
+
+    function playAudio3() 
+    {
+        audio3.play();
+    }
+    setTimeout(playAudio3, 20000)
+
 
     data = new Date()
     tempo_inicial = data.getTime()
@@ -73,7 +97,7 @@
         }
     }
 
-    teleporizador= setTimeout(Subir, 3000)
+    teleporizador= setTimeout(Subir, 15000)
     x = 750;
     y = 100;
     TOPO = "";
@@ -82,13 +106,13 @@
     function Subir()
     {    
         TOPO = y + "px";
-        $("#foguete").animate({top:TOPO}, 1000)
+        $("#foguete").animate({top:TOPO}, 5000)
         temporizador = null
         temporizador = setInterval(Descer, 1000)
     }
     function Descer()
     {
-        y = y + 50
+        y = y + 20
         TOPO = y + "px"
         esquerda = x + "px"
         $("#foguete").animate({left:esquerda,top:TOPO},1000)
